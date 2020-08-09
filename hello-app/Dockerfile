@@ -3,8 +3,8 @@ ADD . /go/src/hello-app
 RUN go install hello-app
 
 FROM alpine:latest
-RUN adduser -D app
-USER app
+RUN adduser -D -u 1000  app 
+USER 1000
 COPY --from=0 /go/bin/hello-app .
 ENV PORT 8080
 CMD ["./hello-app"]
